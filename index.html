@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>jQuery and XML</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="language" content="en" />
+
+</head>
+<body
+
+<div id="output">super </div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  alert('step-a.');
+ $.ajax({
+   type: "GET",
+   url: "http://mobi-bamboo.nuance.com:8085/rest/api/latest/result/K8I-MTLABCORECI3?expand=results\[0\].result",
+   cache: false,
+   dataType: "xml",
+   success: function(xml){
+     alert('step-b.');
+     $(xml).find("results").each(function(){
+       $("#output").append($(this) + "<br />");
+     });
+   }
+ });
+ alert('step-c.');
+});
+</script>
+
+
+</body>
+</html>
