@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>jQuery and XML</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="language" content="en" />
+
+</head>
+<body
+
+<div id="output">super </div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  alert('step1.');
+ $.ajax({
+   type: "GET",
+   url: "example.xml",
+   cache: false,
+   dataType: "xml",
+   success: function(xml){
+     alert('step2.');
+     $(xml).find("book").each(function(){
+       $("#output").append($(this).attr("code") + "<br />");
+     });
+   }
+ });
+ alert('step3.');
+});
+</script>
+
+
+</body>
+</html>
